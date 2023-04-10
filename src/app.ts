@@ -1,3 +1,6 @@
+import { config } from "dotenv";
+config();
+
 import express from "express";
 import Helmet from "helmet";
 import { CredentialController } from "./controllers/credentials";
@@ -6,8 +9,6 @@ import cors from "cors";
 import { CORS_ERROR_MSG } from "./types/constants";
 import * as swagger from "swagger-ui-express";
 import * as swaggerJson from "../swagger.json";
-
-require("dotenv").config();
 
 class App {
   public express: express.Application;

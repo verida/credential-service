@@ -1,3 +1,6 @@
+import { config } from "dotenv";
+config();
+
 import {
   IIdentifier,
   MinimalImportableIdentifier,
@@ -6,8 +9,6 @@ import {
 } from "@veramo/core";
 import { cheqdDidRegex } from "../types/types";
 import { v4 } from "uuid";
-
-require("dotenv").config();
 
 const { ISSUER_ID_PRIVATE_KEY_HEX, ISSUER_ID_PUBLIC_KEY_HEX, ISSUER_ID } =
   process.env;

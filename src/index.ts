@@ -1,7 +1,8 @@
+import { config } from "dotenv";
+config();
+
 import * as http from "http";
 import App from "./app";
-
-require("dotenv").config();
 
 const port = process.env.PORT || 8787;
 App.set("port", port);
