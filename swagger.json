@@ -147,7 +147,8 @@
             "type": "string"
           },
           "attributes": {
-            "type": "object"
+            "type": "object",
+            "description": "List of attributes to be issued in the credential. It must include a credentialSchema.id property"
           },
           "@context": {
             "type": "array",
@@ -163,6 +164,14 @@
           },
           "expirationDate": {
             "type": "string"
+          },
+          "credentialName": {
+            "type": "string",
+            "description": "Name of the credential to be issued once displayed in the Verida Wallet"
+          },
+          "credentialSummary": {
+            "type": "string",
+            "description": "Summary of the credential to be issued once displayed in the Verida Wallet"
           }
         },
         "required": ["subjectId", "attributes"],
