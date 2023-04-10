@@ -22,6 +22,7 @@ declare global {
       VERIDA_ENVIRONMENT?: string;
       VERIDA_APP_NAME?: string;
       ISSUER_VERIDA_PRIVATE_KEY?: string;
+      POLYGON_PRIVATE_KEY?: string;
     }
   }
 }
