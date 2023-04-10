@@ -68,7 +68,8 @@ const VERIDA_ENVIRONMENT: EnvironmentType =
     ? EnvironmentType.MAINNET
     : EnvironmentType.TESTNET;
 
-const { VERIDA_APP_NAME, ISSUER_VERIDA_PRIVATE_KEY } = process.env;
+const { VERIDA_APP_NAME, ISSUER_VERIDA_PRIVATE_KEY, POLYGON_PRIVATE_KEY } =
+  process.env;
 
 export class Credentials {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -86,11 +87,16 @@ export class Credentials {
     if (!ISSUER_VERIDA_PRIVATE_KEY) {
       throw new Error("'ISSUER_VERIDA_PRIVATE_KEY' env variable is missing");
     }
+    if (!POLYGON_PRIVATE_KEY) {
+      throw new Error("'POLYGON_PRIVATE_KEY' env variable is missing");
+    }
+
     this.veridaHelper = new VeridaHelper();
     void this.veridaHelper.init(
       VERIDA_ENVIRONMENT,
       VERIDA_APP_NAME,
-      ISSUER_VERIDA_PRIVATE_KEY
+      ISSUER_VERIDA_PRIVATE_KEY,
+      POLYGON_PRIVATE_KEY
     );
   }
 
@@ -182,8 +188,8 @@ export class Credentials {
           request.subjectDid,
           "New Verifiable Credential",
           verifiable_credential,
-          "", // TODO: Add the name of the credential
-          "" // TODO: Add a summary to the credential
+          request.credentialName,
+          request.credentialSummary
         );
       } catch (error: unknown) {
         // Log error ... or whatever the error handling is
