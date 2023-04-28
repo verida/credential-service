@@ -1,29 +1,9 @@
-import { AccountConfig, EnvironmentType } from "@verida/types";
+import { EnvironmentType } from "@verida/types";
 import { Context, Network } from "@verida/client-ts";
 import { AutoAccount } from "@verida/account-node";
 import { Credential } from "../types/types";
 
 const polygonRpcUrl = "https://rpc-mumbai.maticvigil.com";
-
-// Default servers to be used if the DID doesn't exist. Won't be necessary in our case but still needed in the config (for the moment)
-const defaultServers = [
-  "https://node1-use2.acacia.verida.tech/",
-  "https://node2-use2.acacia.verida.tech/",
-  "https://node3-use2.acacia.verida.tech/",
-];
-const defaultDidServers = defaultServers.map((serverUrl) => `${serverUrl}did/`);
-
-// Config with default servers
-const accountConfig: AccountConfig = {
-  defaultDatabaseServer: {
-    type: "VeridaDatabase",
-    endpointUri: defaultServers,
-  },
-  defaultMessageServer: {
-    type: "VeridaMessage",
-    endpointUri: defaultServers,
-  },
-};
 
 /** Structure of the record stored on the Verida Network */
 interface DataRecord {
@@ -75,17 +55,15 @@ export class VeridaHelper {
     accountPrivateKey: string,
     polygonPrivateKey: string
   ) {
-    this.account = new AutoAccount(accountConfig, {
+    this.account = new AutoAccount({
       privateKey: accountPrivateKey,
       environment,
       didClientConfig: {
-        // Config particularly needed when creating new DID, won't be needed in our case, but still required in the current version of the config.
         callType: "web3",
         web3Config: {
           rpcUrl: polygonRpcUrl,
           privateKey: polygonPrivateKey, // Polygon private key for creating DID, not needed in our case but required in the current version of the config.
         },
-        didEndpoints: defaultDidServers,
       },
     });
 
