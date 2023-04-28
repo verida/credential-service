@@ -27,6 +27,7 @@ WORKDIR /home/node/app
 
 # Copy built application
 COPY --from=builder /home/node/app/dist .
+COPY --from=builder /home/node/app/node_modules ./node_modules
 
 # Build-time arguments
 ARG NODE_ENV=production
@@ -56,6 +57,10 @@ ENV VERIDA_ENVIRONMENT ${VERIDA_ENVIRONMENT}
 ENV VERIDA_APP_NAME ${VERIDA_APP_NAME}
 ENV ISSUER_VERIDA_PRIVATE_KEY ${ISSUER_VERIDA_PRIVATE_KEY}
 ENV POLYGON_PRIVATE_KEY ${POLYGON_PRIVATE_KEY}
+
+# skips puppeteer installing chrome and points to correct binary
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 # We don't have the node_modules directory
 # this image only has the output worker.js file.

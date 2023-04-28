@@ -1,6 +1,6 @@
 # Skip unncecessary folders
 dist/**
-node_modules/**
+# node_modules/**
 .github/**
 
 # Skip unnecessary files
