@@ -34,11 +34,11 @@ export class CredentialController {
       .withMessage("credentialName is required")
       .isString()
       .withMessage("credentialName should be a string"),
-    check("attributes.credentialSchema.id")
+    check("credentialSchema")
       .exists()
-      .withMessage("attributes.credentialSchema.id are required")
+      .withMessage("credentialSchema are required")
       .isString()
-      .withMessage("attributes.credentialSchema.id should be an string"),
+      .withMessage("credentialSchema should be an string"),
   ];
 
   public static verifyValidator = [

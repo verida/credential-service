@@ -142,14 +142,6 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "subjectDid": {
-            "description": "This input field is the holder's DID",
-            "type": "string"
-          },
-          "attributes": {
-            "type": "object",
-            "description": "List of attributes to be issued in the credential. It must include a credentialSchema.id property"
-          },
           "@context": {
             "type": "array",
             "items": {
@@ -161,6 +153,18 @@
             "items": {
               "type": "string"
             }
+          },
+          "credentialSchema": {
+            "type": "string",
+            "description": "Schema of the credential"
+          },
+          "subjectDid": {
+            "description": "This input field is the holder's DID",
+            "type": "string"
+          },
+          "attributes": {
+            "type": "object",
+            "description": "List of attributes to be issued in the credential. It follows the schema defined in credentialSchema."
           },
           "expirationDate": {
             "type": "string"
@@ -213,6 +217,14 @@
               }
             }
           },
+          "credentialSchema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            }
+          },
           "credentialSubject": {
             "type": "object",
             "properties": {
@@ -245,12 +257,15 @@
           "issuer": {
             "id": "did:cheqd:mainnet:8790869e-624c-4325-98df-c30e0e473228"
           },
+          "credentialSchema": {
+            "id": "https://example.org/credentials/v1/schema.json"
+          },
           "credentialSubject": {
-            "id": "did:key:z6MkhaXgBZDvotDkL5257faiztiGiC2QtKLGpbnnEGta2doK"
+            "id": "did:key:z6MkhaXgBZDvotDkL5257faiztiGiC2QtKLGpbnnEGta2doK",
+            "gender": "male",
+            "name": "Bob"
           },
           "issuanceDate": "2023-03-22T07:00:47.749Z",
-          "gender": "male",
-          "name": "Bob",
           "proof": {
             "type": "JwtProof2020",
             "jwt": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vc2NoZW1hLm9yZy9QZXJzb24iXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIlBlcnNvbiJdLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDprZXk6ejZNa2hhWGdCWkR2b3REa0w1MjU3ZmFpenRpR2lDMlF0S0xHcGJubkVHdGEyZG9LIn19LCJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vc2NoZW1hLm9yZy9QZXJzb24iXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIlBlcnNvbiJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6Y2hlcWQ6bWFpbm5ldDo4NzkwODY5ZS02MjRjLTQzMjUtOThkZi1jMzBlMGU0NzMyMjgifSwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6a2V5Ono2TWtoYVhnQlpEdm90RGtMNTI1N2ZhaXp0aUdpQzJRdEtMR3Bibm5FR3RhMmRvSyJ9LCJpc3N1YW5jZURhdGUiOiIyMDIzLTAzLTIyVDA3OjAwOjQ3Ljc0OVoiLCJnZW5kZXIiOiJtYWxlIiwibmFtZSI6IkJvYiIsInN1YiI6ImRpZDprZXk6ejZNa2hhWGdCWkR2b3REa0w1MjU3ZmFpenRpR2lDMlF0S0xHcGJubkVHdGEyZG9LIiwibmJmIjoxNjc5NDY4NDQ3LCJpc3MiOiJkaWQ6Y2hlcWQ6bWFpbm5ldDo4NzkwODY5ZS02MjRjLTQzMjUtOThkZi1jMzBlMGU0NzMyMjgifQ.P_DulspWdCOzCrlQz8i0JYHQx5l5OHeMYWZ_GgozY1PACpy9MMFS_t04dUYcfWbK6RK89NbgyDza1H8M0Ji3Aw"

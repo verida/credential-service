@@ -152,12 +152,14 @@ export class Credentials {
       "@context": [...(request["@context"] || []), ...VC_CONTEXT],
       type: [...(request.type || []), VC_TYPE],
       issuer: { id: issuer_id.did },
+      issuanceDate: new Date().toISOString(),
+      credentialSchema: {
+        id: request.credentialSchema,
+      },
       credentialSubject: {
         id: request.subjectDid,
-        type: undefined,
+        ...request.attributes,
       },
-      issuanceDate: new Date().toISOString(),
-      ...request.attributes,
     };
 
     if (request.expirationDate) {

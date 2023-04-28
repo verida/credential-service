@@ -23,6 +23,12 @@ export type CredentialStatus = {
   [x: string]: any;
 };
 
+export type CredentialSchema = {
+  id?: string;
+  type?: string;
+  [x: string]: any;
+};
+
 export interface ProofType {
   type?: string;
 
@@ -37,7 +43,7 @@ export interface UnsignedCredential {
   issuanceDate: string;
   expirationDate?: string;
   credentialStatus?: CredentialStatus;
-  credentialSchema: { id: string };
+  credentialSchema: CredentialSchema;
   id?: string;
 
   [x: string]: any;
@@ -74,6 +80,7 @@ export interface CredentialPayload {
   issuanceDate?: DateType;
   expirationDate?: DateType;
   credentialStatus?: CredentialStatus;
+  credentialSchema?: CredentialSchema;
   id?: string;
 
   [x: string]: any;
@@ -112,6 +119,7 @@ export type WebPage = {
 
 export interface CredentialRequest {
   subjectDid: string;
+  credentialSchema: string;
   attributes: Record<string, any>;
   "@context"?: string[];
   type?: string[];
